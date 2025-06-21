@@ -1,2 +1,0 @@
-# Sharky_cos
-EVERYTHING ABOUT SH4RKY!
