@@ -6,13 +6,15 @@
         <title>Home</title>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
         <style>
+        *{
+            font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+        }
         h1 {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            color: #333;
-            border-bottom: 2px solid #e2e2e2;
-            padding-bottom: 0.5rem;
+            color: rgb(112, 17, 61);
+            background-color: rgb(255, 221, 227);
             }
 
         h2 {
@@ -20,32 +22,137 @@
             font-weight: 600;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #444;
+            color:rgb(161, 1, 31);
             opacity: 0.6;
+            display: inline;
             }
         .lst {
-            background-color: aquamarine;
+            list-style: none;
+            background-color: rgb(255, 221, 227);
             font-style: italic;
+            border: 1px solid rosybrown;
+            border-radius: 12px;
+            padding: 10px 10px 10px 0px;
+        }
+
+        .about-section {
+            display: flex;
+            justify-content: center;  /* horizontal center */
+            align-items: center;      /* vertical center */
+            height: 330px;            /* set a height as needed */
+            position: relative;       /* for absolute children if needed */
+            top: 20px;
+            background-color: rgb(254, 235, 238);
+            border-radius: 20px;
+            }
+
+        #about-main, #contact-main{
+            color:antiquewhite;
+            cursor: pointer;
+            z-index: 2;
+            position: relative;
+            width: fit-content;
+            padding: 10px;
+            background-color: rgb(161, 1, 31);
+            border-radius: 8px;
+            text-shadow: 
+                -1px -1px #3a0202,
+                1px -1px #3a0202,
+                -1px 1px #3a0202,
+                1px 1px #3a0202;
+            transition: box-shadow 0.2s, transform 0.2s;
+            box-shadow: 0 0 10px rgba(161,1,31,0.2);
+        }
+
+        #about-main:hover, #contact-main:hover {
+            box-shadow: 0 0 20px rgba(161,1,31,0.4);
+            transform: scale(1.05);
+        }
+
+
+
+
+       
+        #contact-scatter-list, #about-scatter-list, #jojo-subscatter{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+        }
+
+        #about-scatter-list li,
+        #contact-scatter-list li, #jojo-subscatter li{
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: 
+                transform 0.8s cubic-bezier(.68,-0.55,.27,1.55),
+                opacity 0.3s;
+            pointer-events: auto;
+            font-size: 1.5rem;
+            color: rgb(217, 173, 187);
+            display: inline-block;
+            white-space: nowrap; /* Prevent vertical wrapping */
+        }
+
+        #about-scatter-list.active li,
+        #contact-scatter-list.active li, #jojo-subscatter.active li {
+            opacity: 1;
+            font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+        }
+
+        /* Individual scatter directions (example for 6 items) */
+        #about-scatter-list.active li:nth-child(1) { transform: translate(-170px, -150px);}
+        #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -140px);}
+        #about-scatter-list.active li:nth-child(3) { transform: translate(120px, -80px);}
+        #about-scatter-list.active li:nth-child(4) { transform: translate(140px, 40px);}
+        #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 80px);}
+        #about-scatter-list.active li:nth-child(6) { transform: translate(-100px, 60px); }
+        #about-scatter-list.active li:nth-child(7) { transform: translate(-180px, 30px);}
+        #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -80px); }
+
+        /* Adjust the scatter directions for 3 items */
+        #contact-scatter-list.active li:nth-child(1) { transform: translate(-170px, -120px);}
+        #contact-scatter-list.active li:nth-child(2) { transform: translate(0px, 80px);}
+        #contact-scatter-list.active li:nth-child(3) { transform: translate(-360px, 30px);}
+
+
+        #jojo-subscatter.active li:nth-child(1) {transform: translate(-80px, -60px);}
+        #jojo-subscatter.active li:nth-child(2) {transform: translate(80px, -60px);}
+        #jojo-subscatter.active li:nth-child(3) {transform: translate(80px, 60px);}
+        #jojo-subscatter.active li:nth-child(4) {transform: translate(-80px, 60px);}
+    
+        .box {
+            color: #3a0202;
+            background-color: rgb(255, 221, 227);
+            width: fit-content;
+            padding: 10px;
+            border: 5px solid rosybrown !important;
+            margin: 0 auto;
         }
         a:link {
             color: black;
             text-decoration: none;
             transition: color 0.3s ease;
             background-color: darksalmon;
-            border: 1px dashed crimson;
-            display:block;
+            border: 5px rgb(220, 128, 146);
+            border-radius: 12px;
             width: fit-content;
         }
         a:visited {
             color: black;
             text-decoration: none;
             transition: color 0.3s ease;
-            background-color: grey;
+            background-color: rgb(255, 221, 227);
             border: 1px dashed darkgrey;
         }
         a:hover, a:active {
-            background-color: #007bff;
-            /* make the button zoom */
+            box-shadow: 0 0 20px rgba(161,1,31,0.4);
             transform: scale(1.05);
         }
         body {
@@ -57,49 +164,61 @@
             max-width: 800px;
             padding: 2rem;
             }
-        header, footer {
-              background-color: #e0f7fa;
+        header {
+              background-color:rgb(255, 221, 227);
               padding: 14px;
               text-align: center;
+              margin:auto;
+              border-radius: 20px;
+                box-shadow: 0px 4px 15px rgba(154, 87, 120, 0.816);
             }
-        img:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
-        }
         </style>
     </head>
     <body>
         <header>
             <h1>欢迎来到翠翠鲨的主页！૮ ᴗ͈ˬᴗ͈ෆა</h1>
         </header>
-        <h2>关于我</h2>
-        <ul>
-            <li>📍 帝都/芝加哥</li>
-            <li>🎂 2005年</li>
-            <li>INFJ-T/双子</li>
-            <li>成分</li>
-            <ul class="lst">
-                <li>蓝锁: 凛冴(会有混邪内容)</li>
-                <li>鸢: 广陵王全肯定，辩广/袁广/策广, ❌激代</li>
-                <li>HP: lvhp/trhp</li>
-                <li>原神: 达达利亚，知妙知/丝柯达</li>
-                <li>jojo: 承花/西乔西/仗露/吉良忍</li>
-                <li>第五人格: 副凯, 其余杂食无雷</li>
-            </ul>
+       <div class="about-section">
+        <h2 id="about-main">关于我</h2>
+        <ul id="about-scatter-list">
+            <li>INFJ-T</li>
+            <li>帝都/Chicago</li>
+            <li>2005</li>
+            <li id="jojo-li">
+                JOJO
+                <ul id="jojo-subscatter">
+                    <li>承花</li>
+                    <li>西乔西</li>
+                    <li>仗露</li>
+                    <li>吉良忍</li>
+                </ul>
+            </li>
+            <li>HP</li>
+            <li>蓝锁</li>
+            <li>鸢</li>
+            <li>双子</li>
         </ul>
-        <h2>联系方式</h2>
-        <ul>
+        </div>
+       <div class="about-section">
+        <h2 id="contact-main">联系方式</h2>
+        <ul id="contact-scatter-list">
             <li>wx: Tralalerotralala030</li>
             <li>小红书: <a href="https://www.xiaohongshu.com/user/profile/602f4fd3000000000100abeb?xsec_token=YBiieUvBboXbRSqVPTsM_Ks5Q0PR02tRZKLnuJKZF7bzs=&xsec_source=app_share&xhsshare=CopyLink&appuid=602f4fd3000000000100abeb&apptime=1750462652&share_id=a27629995af24d8bac10f224914295f0" target="_blank">@宜家鲨鱼</a></li>
             <li>抖音: <a href="https://www.douyin.com/user/MS4wLjABAAAAimvw0ALSk0Zgd0wP7xaqARcswFAIPYSIXAdSEtIwrVhsCFuAw467sqUgDA3jo7Hl?from_tab_name=main" target="_blank">@翠翠鲨好恰</a></li>
         </ul>
+       </div>
+       <div style="background-color: rgb(254, 235, 238); border-radius: 20px; position: relative; top: 20px; padding: 20px;">
         <h2>我的作品</h2>
-        <img src="sample1.jpg" alt="Sample Image 1" height="479" width="368">
-        <img src="sample2.jpg" alt="Sample Image 2" height="410" width="347">
-        <img src="sample3.jpg" alt="Sample Image 3" height="455" width="678">
-        <div><a href="gallery.html" class="button">查看全部作品</a></div>
+        <a href="gallery.html" class="box" target="_blank">查看全部作品</a>
+            <div>
+            <img src="sample1.jpg" alt="Sample Image 1" height="479" width="368">
+            <img src="sample2.jpg" alt="Sample Image 2" height="410" width="347">
+            <img src="sample3.jpg" alt="Sample Image 3" height="455" width="678">
+            </div>
+        </div>
         <footer>
-            <p><a href = "home_eng.html"></a></p>
+            <p><a href = "home_eng.html">English</a></p>
         </footer>
+    <script src="scatter.js"></script>
     </body>
 </html>
