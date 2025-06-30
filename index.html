@@ -9,13 +9,28 @@
         *{
             font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
         }
+
+        img{
+            width: 45%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
         h1 {
             font-size: 2.5rem;
             font-weight: bold;
+            width: 100%;
+            height: 400px;
             margin-bottom: 1rem;
             color: rgb(112, 17, 61);
             background-color: rgb(255, 221, 227);
             }
+
+        @media (max-width: 767px) {
+            h1 {
+                height: 200px;
+            }
+        }
 
         h2 {
             font-size: 2rem;
@@ -64,15 +79,11 @@
             box-shadow: 0 0 10px rgba(161,1,31,0.2);
         }
 
-        #about-main:hover, #contact-main:hover {
+        #about-main:hover, #contact-main:hover, #jojo-li:hover {
             box-shadow: 0 0 20px rgba(161,1,31,0.4);
             transform: scale(1.05);
         }
 
-
-
-
-       
         #contact-scatter-list, #about-scatter-list, #jojo-subscatter{
         position: absolute;
         left: 50%;
@@ -85,7 +96,7 @@
         }
 
         #about-scatter-list li,
-        #contact-scatter-list li, #jojo-subscatter li{
+        #contact-scatter-list li, #jojo-subscatter li {
             position: absolute;
             left: 0;
             top: 0;
@@ -99,33 +110,76 @@
             display: inline-block;
             white-space: nowrap; /* Prevent vertical wrapping */
         }
+        #jojo-li {
+            cursor: pointer; /* Make JOJO item clickable */
+            position: relative; /* For sub-list positioning */
+            color:rgb(99, 4, 21) !important;
+            padding: 3px;
+            border-radius: 10px;
+        }
+        #jojo-subscatter {
+            visibility: hidden; /* Hide the sub-list by default */
+        }
+        #jojo-subscatter li {
+            font-size: 1rem; /* Smaller font size for sub-items */
+            color: rgb(161, 1, 31); /* Darker color for sub-items */
+        }
+        #jojo-subscatter.active {
+            visibility: visible; /* Show when active */
+        }
 
         #about-scatter-list.active li,
-        #contact-scatter-list.active li, #jojo-subscatter.active li {
+        #contact-scatter-list.active li {
             opacity: 1;
             font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
         }
 
-        /* Individual scatter directions (example for 6 items) */
-        #about-scatter-list.active li:nth-child(1) { transform: translate(-170px, -150px);}
-        #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -140px);}
-        #about-scatter-list.active li:nth-child(3) { transform: translate(120px, -80px);}
-        #about-scatter-list.active li:nth-child(4) { transform: translate(140px, 40px);}
-        #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 80px);}
-        #about-scatter-list.active li:nth-child(6) { transform: translate(-100px, 60px); }
-        #about-scatter-list.active li:nth-child(7) { transform: translate(-180px, 30px);}
-        #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -80px); }
+        /* Individual scatter directions for PC*/
+        @media (min-width: 768px) {
+            #about-scatter-list.active li:nth-child(1) { transform: translate(-170px, -150px);} /* “INFJ-T” */
+            #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -140px);} /* “帝都/Chicago” */
+            #about-scatter-list.active li:nth-child(3) { transform: translate(120px, -80px);} /* “2005” */
+            #about-scatter-list.active li:nth-child(4) { transform: translate(140px, 40px);} /* “JOJO” */
+            #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 80px);} /* “HP” */
+            #about-scatter-list.active li:nth-child(6) { transform: translate(-100px, 60px); } /* “蓝锁” */
+            #about-scatter-list.active li:nth-child(7) { transform: translate(-180px, 30px);} /* “鸢” */
+            #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -80px); } /* “双子” */
 
-        /* Adjust the scatter directions for 3 items */
-        #contact-scatter-list.active li:nth-child(1) { transform: translate(-170px, -120px);}
-        #contact-scatter-list.active li:nth-child(2) { transform: translate(0px, 80px);}
-        #contact-scatter-list.active li:nth-child(3) { transform: translate(-360px, 30px);}
+            /* Adjust the scatter directions for 3 items */
+            #contact-scatter-list.active li:nth-child(1) { transform: translate(-170px, -120px);}
+            #contact-scatter-list.active li:nth-child(2) { transform: translate(0px, 80px);}
+            #contact-scatter-list.active li:nth-child(3) { transform: translate(-320px, 30px);}
+            #contact-scatter-list.active li:nth-child(4) { transform: translate(-120px, 150px);}
 
+            #jojo-subscatter.active li:nth-child(1) {transform: translate(-80px, -60px);}
+            #jojo-subscatter.active li:nth-child(2) {transform: translate(80px, -60px);}
+            #jojo-subscatter.active li:nth-child(3) {transform: translate(80px, 60px);}
+            #jojo-subscatter.active li:nth-child(4) {transform: translate(-80px, 60px);}
 
-        #jojo-subscatter.active li:nth-child(1) {transform: translate(-80px, -60px);}
-        #jojo-subscatter.active li:nth-child(2) {transform: translate(80px, -60px);}
-        #jojo-subscatter.active li:nth-child(3) {transform: translate(80px, 60px);}
-        #jojo-subscatter.active li:nth-child(4) {transform: translate(-80px, 60px);}
+        }
+        /* Individual scatter directions for mobile */
+        @media (max-width: 767px) {
+            * {
+                font-size: 12px; /* Adjust font size for mobile */
+            }
+            #about-scatter-list.active li:nth-child(1) { transform: translate(-100px, -100px);} /* “INFJ-T” */
+            #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -120px);} /* “帝都/Chicago” */
+            #about-scatter-list.active li:nth-child(3) { transform: translate(80px, -60px);} /* “2005” */
+            #about-scatter-list.active li:nth-child(4) { transform: translate(90px, 20px);} /* “JOJO” */
+            #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 50px);} /* “HP” */
+            #about-scatter-list.active li:nth-child(6) { transform: translate(-70px, 60px); } /* “蓝锁” */
+            #about-scatter-list.active li:nth-child(7) { transform: translate(-160px, 15px);} /* “鸢” */
+            #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -40px); } /* “双子” */
+            /* Adjust the scatter directions for 3 items */
+            #contact-scatter-list.active li:nth-child(1) { transform: translate(-100px, -140px);} /* wx */
+            #contact-scatter-list.active li:nth-child(2) { transform: translate(-160px, -90px);} /* 小红书 */
+            #contact-scatter-list.active li:nth-child(3) { transform: translate(-120px, 40px);} /* 抖音 */
+            #contact-scatter-list.active li:nth-child(4) { transform: translate(0px, 80px);} /* 微信图片 */
+
+            #jojo-subscatter.active li:nth-child(1) {transform: translate(-50px, -50px);} /* 承花 */
+            #jojo-subscatter.active li:nth-child(2) {transform: translate(15px, -40px);} /* 西乔西 */
+            #jojo-subscatter.active li:nth-child(3) {transform: translate(30px, 20px);} /* 仗露 */
+        }   
     
         .box {
             color: #3a0202;
@@ -165,18 +219,67 @@
             padding: 2rem;
             }
         header {
-              background-color:rgb(255, 221, 227);
-              padding: 14px;
-              text-align: center;
-              margin:auto;
-              border-radius: 20px;
-                box-shadow: 0px 4px 15px rgba(154, 87, 120, 0.816);
+            position:relative;
+            background-color:rgb(255, 221, 227);
+            padding: 14px;
+            text-align: center;
+            margin:auto;
+            border-radius: 20px;
+            box-shadow: 0px 4px 15px rgba(154, 87, 120, 0.816);
             }
+
+        
+        .header-img {
+            position: absolute;
+            bottom: 0;
+            width: 20%;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            border-radius: 0%;
+        }
+
+        .img-display1 {
+            left: 0;
+            animation-delay: 0.2s;
+        }
+        .img-display2 {
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+        .img-display3 {
+            right: 40%;
+            animation-delay: 0.8s;
+        }
+        .img-display4 {
+            right: 20%;
+            animation-delay: 1.1s;
+        }
+        .img-display5 {
+            right: 0;
+            animation-delay: 1.4s;
+            width:25%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
         </style>
     </head>
     <body>
         <header>
             <h1>欢迎来到翠翠鲨的主页！૮ ᴗ͈ˬᴗ͈ෆა</h1>
+            <img src="Display1.PNG" class="header-img img-display1" alt="Display1">
+            <img src="Display2.PNG" class="header-img img-display2" alt="Display2">
+            <img src="Display3.PNG" class="header-img img-display3" alt="Display3">
+            <img src="Display4.PNG" class="header-img img-display4" alt="Display4">
+            <img src="Display5.PNG" class="header-img img-display5" alt="Display5">
         </header>
        <div class="about-section">
         <h2 id="about-main">关于我</h2>
@@ -190,7 +293,6 @@
                     <li>承花</li>
                     <li>西乔西</li>
                     <li>仗露</li>
-                    <li>吉良忍</li>
                 </ul>
             </li>
             <li>HP</li>
@@ -205,15 +307,16 @@
             <li>wx: Tralalerotralala030</li>
             <li>小红书: <a href="https://www.xiaohongshu.com/user/profile/602f4fd3000000000100abeb?xsec_token=YBiieUvBboXbRSqVPTsM_Ks5Q0PR02tRZKLnuJKZF7bzs=&xsec_source=app_share&xhsshare=CopyLink&appuid=602f4fd3000000000100abeb&apptime=1750462652&share_id=a27629995af24d8bac10f224914295f0" target="_blank">@宜家鲨鱼</a></li>
             <li>抖音: <a href="https://www.douyin.com/user/MS4wLjABAAAAimvw0ALSk0Zgd0wP7xaqARcswFAIPYSIXAdSEtIwrVhsCFuAw467sqUgDA3jo7Hl?from_tab_name=main" target="_blank">@翠翠鲨好恰</a></li>
+            <li><img src="Weixin.jpg" alt="QR Code"></li>
         </ul>
        </div>
        <div style="background-color: rgb(254, 235, 238); border-radius: 20px; position: relative; top: 20px; padding: 20px;">
         <h2>我的作品</h2>
         <a href="gallery.html" class="box" target="_blank">查看全部作品</a>
             <div>
-            <img src="sample1.jpg" alt="Sample Image 1" height="479" width="368">
-            <img src="sample2.jpg" alt="Sample Image 2" height="410" width="347">
-            <img src="sample3.jpg" alt="Sample Image 3" height="455" width="678">
+            <img src="sample1.jpg" alt="Sample Image 1">
+            <img src="sample2.jpg" alt="Sample Image 2">
+            <img src="sample3.jpg" alt="Sample Image 3">
             </div>
         </div>
         <footer>
