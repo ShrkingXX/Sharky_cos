@@ -5,164 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
-    <style>
-        *{
-            background-color: rgb(252, 242, 252);
-        }
-        body {
-            font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-            color: #222;
-            line-height: 1.8;
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #333;
-            border-bottom: 2px solid #e2e2e2;
-            padding-bottom: 0.5rem;
-        }
-        h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #444;
-            opacity: 0.6;
-        }
-        a{
-            width: fit-content;
-            color: inherit;
-            text-decoration: none;
-        }
-        img{
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(163, 157, 171, 0.816);
-        }
-        img:hover{
-            transform: scale(1.05);
-            transition: transform 0.5s ease;
-            margin-bottom: 1rem;
-        }
-        .gallery-image {
-            width: 32%;
-            height: auto;
-        }
-        .box {
-            font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-            color: #3a0202;
-            background-color: rgb(255, 221, 227);
-            width: fit-content;
-            padding: 10px;
-            border: 5px solid rosybrown;
-        }
-
-        #box {
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        #footer-box {
-            text-align: left;
-        }
-    </style>
-    <main>
-        <!-- display all pictures, and open the picture when being clicked -->
-        <h1>Gallery</h1>
-        <h2>Click on the images to view them in full size</h2>
-        <div id="box" class="box">
-            <a href="to.html">Ask For Signature</a>
+    <link rel="stylesheet" href="gallery_style.css">
+    <body>
+        <h1 class="about-title">SH4RKY</h1>
+        <div class="carousel-container">
+            <button class="nav-arrow left">‹</button>
+            <div class="carousel-track">
+                <!-- Carousel items from image1 to image27 -->
+                <div class="card" data-index="0">
+                    <img src="image1.jpg" alt="pic 1">
+                </div>
+                <div class="card" data-index="1">
+                    <img src="image13.jpg" alt="pic 2">
+                </div>
+                <div class="card" data-index="2">
+                    <img src="image3.jpg" alt="pic 3">
+                </div>
+                <div class="card" data-index="3">
+                    <img src="image4.jpg" alt="pic 4">
+                </div>
+                <div class="card" data-index="4">
+                    <img src="image5.jpg" alt="pic 5">
+                </div>
+                <div class="card" data-index="5">
+                    <img src="image6.jpg" alt="pic 6">
+                </div>
+                <div class="card" data-index="6">
+                    <img src="image7.jpg" alt="pic 7">
+                </div>
+                <div class="card" data-index="7">
+                    <img src="image8.jpg" alt="pic 8">
+                </div>
+                <div class="card" data-index="8">
+                    <img src="image9.jpg" alt="pic 9">
+                </div>
+                <div class="card" data-index="9">
+                    <img src="image10.jpg" alt="pic 10">
+                </div>
+                <div class="card" data-index="10">
+                    <img src="image11.jpg" alt="pic 11">
+                </div>
+                <div class="card" data-index="11">
+                    <img src="image12.jpg" alt="pic 12">
+                </div>
+                <div class="card" data-index="12">
+                    <img src="image13.jpg" alt="pic 13">
+                </div>
+                <div class="card" data-index="13">
+                    <img src="image14.jpg" alt="pic 14">
+                </div>
+                <div class="card" data-index="14">
+                    <img src="image15.jpg" alt="pic 15">
+                </div>
+                <div class="card" data-index="15">
+                    <img src="image16.jpg" alt="pic 16">
+                </div>
+                <div class="card" data-index="16">
+                    <img src="image17.jpg" alt="pic 17">
+                </div>
+                <div class="card" data-index="17">
+                    <img src="image18.jpg" alt="pic 18">
+                </div>
+                <div class="card" data-index="18">
+                    <img src="image19.jpg" alt="pic 19">
+                </div>
+                <div class="card" data-index="19">
+                    <img src="image20.jpg" alt="pic 20">
+                </div>
+                <div class="card" data-index="20">
+                    <img src="image21.jpg" alt="pic 21">
+                </div>
+                <div class="card" data-index="21">
+                    <img src="image22.jpg" alt="pic 22">
+                </div>
+                <div class="card" data-index="22">
+                    <img src="image23.jpg" alt="pic 23">
+                </div>
+                <div class="card" data-index="23">
+                    <img src="image24.jpg" alt="pic 24">
+                </div>
+                <div class="card" data-index="24">
+                    <img src="image25.jpg" alt="pic 25">
+                </div>
+                <div class="card" data-index="25">
+                    <img src="image26.jpg" alt="pic 26">
+                </div>
+                <div class="card" data-index="26">
+                    <img src="image27.jpg" alt="pic 27">
+                </div>
+                <div class="card" data-index="27">
+                    <img src="image28.jpg" alt="pic 28">
+                </div>
+                <div class="card" data-index="28">
+                    <img src="image29.jpg" alt="pic 29">
+                </div> 
+                <div class="card" data-index="29">
+                    <img src="image30.jpg" alt="pic 30">
+                </div> 
+                <div class="card" data-index="30">
+                    <img src="image31.jpg" alt="pic 31">
+                </div>
+                <div class="card" data-index="31">
+                    <img src="image32.jpg" alt="pic 32">
+                </div>
+                <div class="card" data-index="32">
+                    <img src="image33.jpg" alt="pic 33">
+                </div>
+                <div class="card" data-index="33">
+                    <img src="image34.jpg" alt="pic 34">
+                </div>
+                <div class="card" data-index="34">
+                    <img src="image35.jpg" alt="pic 35">
+                </div>
+                <div class="card" data-index="35">
+                    <img src="image36.jpg" alt="pic 36">
+                </div>
+                <div class="card" data-index="36">
+                    <img src="image37.jpg" alt="pic 37">
+                </div>
+                <div class="card" data-index="37">
+                    <img src="image38.jpg" alt="pic 38">
+                </div>
+                <div class="card" data-index="38">
+                    <img src="image39.jpg" alt="pic 39">
+                </div>
+            </div>
+            <button class="nav-arrow right">›</button>
         </div>
-        <a href="image1.jpg" target="_blank">
-            <img src="image1.jpg" alt="Image 1" class="gallery-image">
-        <a href="image2.jpg" target="_blank">
-            <img src="image2.jpg" alt="Image 2" class="gallery-image">
-        <a href="image3.jpg" target="_blank">
-            <img src="image3.jpg" alt="Image 3" class="gallery-image">
-        </a>
-        <a href="image4.jpg" target="_blank">
-            <img src="image4.jpg" alt="Image 4" class="gallery-image">
-        </a>
-        <a href="image5.jpg" target="_blank">
-            <img src="image5.jpg" alt="Image 5" class="gallery-image">
-        </a>
-        <a href="image6.jpg" target="_blank">
-            <img src="image6.jpg" alt="Image 6" class="gallery-image">
-        </a>
-<!--         <a href="image7.jpg" target="_blank">
-            <img src="image7.jpg" alt="Image 7" class="gallery-image">
-        </a> -->
-        <a href="image8.jpg" target="_blank">
-            <img src="image8.jpg" alt="Image 8" class="gallery-image">
-        </a>
-        <a href="image9.jpg" target="_blank">
-            <img src="image9.jpg" alt="Image 9" class="gallery-image">
-        </a>
-        <a href="image10.jpg" target="_blank">
-            <img src="image10.jpg" alt="Image 10" class="gallery-image">
-        </a>
-        <a href="image11.jpg" target="_blank">
-            <img src="image11.jpg" alt="Image 11" class="gallery-image">
-        </a>
-        <a href="image12.jpg" target="_blank">
-            <img src="image12.jpg" alt="Image 12" class="gallery-image">
-        </a>
-        <a href="image13.jpg" target="_blank">
-            <img src="image13.jpg" alt="Image 13" class="gallery-image">
-        </a>
-        <a href="image14.jpg" target="_blank">
-            <img src="image14.jpg" alt="Image 14" class="gallery-image">
-        </a>
-        <a href="image15.jpg" target="_blank">
-            <img src="image15.jpg" alt="Image 15" class="gallery-image">
-        </a>
-        <a href="image16.jpg" target="_blank">
-            <img src="image16.jpg" alt="Image 16" class="gallery-image">
-        </a>
-        <a href="image17.jpg" target="_blank">
-            <img src="image17.jpg" alt="Image 17" class="gallery-image">
-        </a>
-        <a href="image18.jpg" target="_blank">
-            <img src="image18.jpg" alt="Image 18" class="gallery-image">
-        </a>
-        <a href="image19.jpg" target="_blank">
-            <img src="image19.jpg" alt="Image 19" class="gallery-image">
-        </a>
-        <a href="image20.jpg" target="_blank">
-            <img src="image20.jpg" alt="Image 20" class="gallery-image">
-        </a>
-        <a href="image21.jpg" target="_blank">
-            <img src="image21.jpg" alt="Image 21" class="gallery-image">
-        </a>
-        <a href="image22.jpg" target="_blank">
-            <img src="image22.jpg" alt="Image 22" class="gallery-image">
-        </a>
-        <a href="image23.jpg" target="_blank">
-            <img src="image23.jpg" alt="Image 23" class="gallery-image">
-        </a>
-        <a href="image24.jpg" target="_blank">
-            <img src="image24.jpg" alt="Image 24" class="gallery-image">
-        </a>
-        <a href="image25.jpg" target="_blank">
-            <img src="image25.jpg" alt="Image 25" class="gallery-image">
-        </a>
-        <a href="image27.PNG" target="_blank">
-            <img src="image27.PNG" alt="Image 27" class="gallery-image">
-        </a>
-        <a href="sample1.jpg" target="_blank">
-            <img src="sample1.jpg" alt="Image A" class="gallery-image">
-        </a>
-        <a href="sample2.jpg" target="_blank">
-            <img src="sample2.jpg" alt="Image B" class="gallery-image">
-        </a>
-        <a href="sample3.jpg" target="_blank">
-            <img src="sample3.jpg" alt="Image C" class="gallery-image">
-        </a>
-    </main>
-    <footer id= "footer-box" class="box">
-        <a href="index.html" >Back to Home</a>
-    </footer>
+
+        <div class="member-info">
+            <h2 class="member-name">翠翠鲨</h2>
+            <p class="member-role">Sharky</p>
+        </div>
+        <div class="dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+            <div class="dot" data-index="5"></div>
+            <div class="dot" data-index="6"></div>
+            <div class="dot" data-index="7"></div>
+            <div class="dot" data-index="8"></div>
+            <div class="dot" data-index="9"></div>
+            <div class="dot" data-index="10"></div>
+            <div class="dot" data-index="11"></div>
+            <div class="dot" data-index="12"></div>
+            <div class="dot" data-index="13"></div>
+            <div class="dot" data-index="14"></div>
+            <div class="dot" data-index="15"></div>
+            <div class="dot" data-index="16"></div>
+            <div class="dot" data-index="17"></div>
+            <div class="dot" data-index="18"></div>
+            <div class="dot" data-index="19"></div>
+            <div class="dot" data-index="20"></div>
+            <div class="dot" data-index="21"></div>
+            <div class="dot" data-index="22"></div>
+            <div class="dot" data-index="23"></div>
+            <div class="dot" data-index="24"></div>
+            <div class="dot" data-index="25"></div>
+            <div class="dot" data-index="26"></div>
+            <div class="dot" data-index="27"></div>
+            <div class="dot" data-index="28"></div>
+            <div class="dot" data-index="29"></div>
+            <div class="dot" data-index="30"></div>
+            <div class="dot" data-index="31"></div>
+            <div class="dot" data-index="32"></div>
+            <div class="dot" data-index="33"></div>
+            <div class="dot" data-index="34"></div>
+            <div class="dot" data-index="35"></div>
+            <div class="dot" data-index="36"></div>
+            <div class="dot" data-index="37"></div>
+            <div class="dot" data-index="38"></div>
+            <div class="dot" data-index="39"></div>
+        </div>
+        <div id= "footer-box">
+            <a href="index.html" >Back To Home</a>
+        </div>
+    <script src="gallery.js"></script>
+    
+</body>
 </html>
