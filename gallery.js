@@ -6,7 +6,7 @@ const teamMembers = [
 	{ name: "江尤娜", role: "坏想法日记" },
 	{ name: "Harry Potter", role: "Harry Potter" },
     { name: "袁基", role: "代号鸢" },
-	{ name: "袁基", role: "代号鸢" },
+	{ name: "槲寄生", role: "重返未来1999 Reverse:1999" },
 	{ name: "卡布尔", role: "迷宫饭 Delicious in Dungeon" },
 	{ name: "尹范", role: "杀戮跟踪 Killing Stalking" },
 	{ name: "里昂", role: "魔王逆谋 Dark Fall " },
