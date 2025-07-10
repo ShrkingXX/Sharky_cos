@@ -17,6 +17,5 @@ new fullpage('#fullpage', {
     sectionSelector: '.section',
     sectionColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
     dropEffects: true,
-    loopBottom: true,
     showActiveTooltip: true,
 });

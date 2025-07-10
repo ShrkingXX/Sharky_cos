@@ -1,6 +1,6 @@
 const teamMembers = [
 	{ name: "糸师冴", role: "蓝色监狱BLUELOCK" },
-	{ name: "Harry Potter", role: "Harry Potter" },
+	{ name: "卡维", role: "原神 Genshin Impact" },
 	{ name: "花京院典明", role: "JOJO的奇妙冒险" },
 	{ name: "花京院典明", role: "JOJO的奇妙冒险" },
 	{ name: "江尤娜", role: "坏想法日记" },

@@ -65,16 +65,6 @@ section{
     object-position: 50% 30%;
 }
 
-.cover::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: 71a3ff54;
-}
-
 #logo{
     grid-column: 2/3;
     font-size: 24px;
@@ -101,12 +91,6 @@ h3 {
     align-items: center;
     color: rgb(174, 219, 241);
     }
-
-@media (max-width: 767px) {
-    h3 {
-        height: 200px;
-    }
-}
 
 h2 {
     font-size: 2rem;
@@ -186,24 +170,31 @@ div #gallery{
     100% { transform: scale(1); }
 }
 
-#about-main:hover, #contact-main:hover, #jojo-li:hover {
+#about-main:hover, #jojo-li:hover, #yuan-li:hover, #bl-li:hover, #genshin-li:hover {
     color:#d2ffc7;
     transform: scale(1.05);
 }
 
-#contact-scatter-list, #about-scatter-list, #jojo-subscatter{
-position: absolute;
-top: 50%;
-transform: translate(-50%, -50%);
-list-style: none;
-margin: 0;
-padding: 0;
-pointer-events: none;
+#contact-main:hover{
+    color:rgb(255, 232, 199);
+    transform: scale(1.05);
 }
 
-#about-scatter-list, #jojo-subscatter {
+#contact-scatter-list, #about-scatter-list, #jojo-subscatter, #yuan-subscatter, #bl-subscatter, #genshin-subscatter {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
+#about-scatter-list, #jojo-subscatter, #yuan-subscatter, #bl-subscatter, #genshin-subscatter {
     left: 30%;
 }
+
+
 
 #contact-scatter-list{
     right: 30%;
@@ -211,7 +202,7 @@ pointer-events: none;
 
 
 #about-scatter-list li,
-#contact-scatter-list li, #jojo-subscatter li {
+#contact-scatter-list li, #jojo-subscatter li, #yuan-subscatter li, #bl-subscatter li, #genshin-subscatter li {
     position: absolute;
     left: 0;
     top: 0;
@@ -224,11 +215,14 @@ pointer-events: none;
     display: inline-block;
     white-space: nowrap; /* Prevent vertical wrapping */
 }
+
+
+
 #about-scatter-list li{
     color: #d2ffc7;
 }
 
-#jojo-subscatter li {
+#jojo-subscatter li, #yuan-subscatter li, #bl-subscatter li, #genshin-subscatter li {
     color: #c7ffe2;
 }
 
@@ -238,19 +232,13 @@ pointer-events: none;
 }
 
 
-#jojo-li {
-    cursor: pointer; /* Make JOJO item clickable */
-    position: relative; /* For sub-list positioning */
-    padding: 3px;
-    border-radius: 10px;
-}
-#jojo-subscatter {
+#jojo-subscatter, #yuan-subscatter, #bl-subscatter, #genshin-subscatter {
     visibility: hidden; /* Hide the sub-list by default */
 }
-#jojo-subscatter li {
+#jojo-subscatter li, #yuan-subscatter li, #bl-subscatter li, #genshin-subscatter li {
     font-size: 1rem; /* Smaller font size for sub-items */
 }
-#jojo-subscatter.active {
+#jojo-subscatter.active, #yuan-subscatter.active, #bl-subscatter.active, #genshin-subscatter.active{
     visibility: visible; /* Show when active */
 }
 
@@ -260,51 +248,136 @@ pointer-events: none;
     font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
 }
 
-/* Individual scatter directions for PC*/
+/* for PC */
 @media (min-width: 768px) {
+
+    #jojo-li:hover, #yuan-li:hover, #bl-li:hover, #genshin-li:hover{
+        cursor: pointer;
+        padding: 3px;
+        border: dashed 1px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
     #about-scatter-list.active li:nth-child(1) { transform: translate(-170px, -150px);} /* “INFJ-T” */
     #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -140px);} /* “帝都/Chicago” */
     #about-scatter-list.active li:nth-child(3) { transform: translate(120px, -80px);} /* “2005” */
     #about-scatter-list.active li:nth-child(4) { transform: translate(140px, 40px);} /* “JOJO” */
-    #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 80px);} /* “HP” */
-    #about-scatter-list.active li:nth-child(6) { transform: translate(-100px, 60px); } /* “蓝锁” */
-    #about-scatter-list.active li:nth-child(7) { transform: translate(-180px, 30px);} /* “鸢” */
-    #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -80px); } /* “双子” */
+    #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 80px);} /* “代号鸢” */
+    #about-scatter-list.active li:nth-child(6) { transform: translate(-150px, 40px); } /* “蓝锁” */
+    #about-scatter-list.active li:nth-child(7) { transform: translate(-130px, 120px);} /* “原神” */
+    #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -100px); } /* “双子” */
+    #about-scatter-list.active li:nth-child(9) { transform: translate(-200px, -50px); } /* “其他” */
 
     /* Adjust the scatter directions for 3 items */
-    #contact-scatter-list.active li:nth-child(1) { transform: translate(-170px, -120px);}
+    #contact-scatter-list.active li:nth-child(1) { transform: translate(-200px, -120px);}
     #contact-scatter-list.active li:nth-child(2) { transform: translate(0px, 80px);}
     #contact-scatter-list.active li:nth-child(3) { transform: translate(-320px, 30px);}
-    #contact-scatter-list.active li:nth-child(4) { transform: translate(-40px, 100px);}
+    #contact-scatter-list.active li:nth-child(4) { transform: translate(70px, -150px);}
 
-    #jojo-subscatter.active li:nth-child(1) {transform: translate(-80px, -60px);}
-    #jojo-subscatter.active li:nth-child(2) {transform: translate(80px, -60px);}
-    #jojo-subscatter.active li:nth-child(3) {transform: translate(80px, 60px);}
-    #jojo-subscatter.active li:nth-child(4) {transform: translate(-80px, 60px);}
+    #jojo-subscatter.active li:nth-child(1) {transform: translate(-60px, -40px);}
+    #jojo-subscatter.active li:nth-child(2) {transform: translate(60px, -40px);}
+    #jojo-subscatter.active li:nth-child(3) {transform: translate(60px, 40px);}
+    #jojo-subscatter.active li:nth-child(4) {transform: translate(-60px, 40px);}
 
+    #yuan-subscatter.active li:nth-child(1) {transform: translate(-50px, 35px);} /* 广陵王 */
+    #yuan-subscatter.active li:nth-child(2) {transform: translate(30px, 40px);} /* 辩广 */
+    #yuan-subscatter.active li:nth-child(3) {transform: translate(70px, 20px);} /* 袁广 */
+
+    #bl-subscatter.active li:nth-child(1) {transform: translate(-50px, -50px);} /* 凛冴 */
+
+    #genshin-subscatter.active li:nth-child(1) {transform: translate(-90px, 30px);} /* 达达利亚 */
+    #genshin-subscatter.active li:nth-child(2) {transform: translate(15px, 40px);} /* 知妙知 */
 }
 /* Individual scatter directions for mobile */
 @media (max-width: 767px) {
     * {
         font-size: 12px; /* Adjust font size for mobile */
     }
-    #about-scatter-list.active li:nth-child(1) { transform: translate(-100px, -100px);} /* “INFJ-T” */
+
+    h3 {
+        height: 30px;
+        font-size: 0.5rem;
+    }
+    .headline {
+        font-size: 70px;
+        top: 65%;
+        /* make it centered */
+        right: 50%;
+        transform: translateX(50%);
+        text-align: center;
+    }
+    .cover img {
+        object-position: 30% 50%;
+        height: 95%;
+    }
+
+    .about_bg{
+        right: -140px;
+        object-position: -30% 50%;
+    }
+
+    #contact-scatter-list{
+        right: 35%;
+    }
+    .contact_bg{
+        left: -100px;
+        object-position: 30% 50%;
+    }
+
+    #jojo-li, #yuan-li, #bl-li, #genshin-li{
+        text-decoration: underline !important;
+        text-decoration-style: dotted !important;
+        text-decoration-thickness: 1px !important;
+    }
+
+    #fp-nav ul li .fp-tooltip {
+    color:white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    font-size: 0.8rem; /* Smaller tooltip font size for mobile */
+    }
+    #fp-nav ul li a span {
+        font-size: 0.8rem; /* Smaller navigation dot size for mobile */
+    }
+
+
+    #about-scatter-list.active li:nth-child(1) { transform: translate(-100px, -150px);} /* “INFJ-T” */
     #about-scatter-list.active li:nth-child(2) { transform: translate(0px, -120px);} /* “帝都/Chicago” */
     #about-scatter-list.active li:nth-child(3) { transform: translate(80px, -60px);} /* “2005” */
-    #about-scatter-list.active li:nth-child(4) { transform: translate(90px, 20px);} /* “JOJO” */
-    #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 50px);} /* “HP” */
-    #about-scatter-list.active li:nth-child(6) { transform: translate(-70px, 60px); } /* “蓝锁” */
-    #about-scatter-list.active li:nth-child(7) { transform: translate(-160px, 15px);} /* “鸢” */
-    #about-scatter-list.active li:nth-child(8) { transform: translate(-120px, -40px); } /* “双子” */
+    #about-scatter-list.active li:nth-child(4) { transform: translate(-40px, 220px);} /* “JOJO” */
+    #about-scatter-list.active li:nth-child(5) { transform: translate(0px, 120px);} /* “代号鸢” */
+    #about-scatter-list.active li:nth-child(6) { transform: translate(50px, 40px); } /* “蓝锁” */
+    #about-scatter-list.active li:nth-child(7) { transform: translate(-80px, 70px);} /* “原神” */
+    #about-scatter-list.active li:nth-child(8) { transform: translate(-100px, -50px); } /* “双子” */
     /* Adjust the scatter directions for 3 items */
-    #contact-scatter-list.active li:nth-child(1) { transform: translate(-100px, -140px);} /* wx */
-    #contact-scatter-list.active li:nth-child(2) { transform: translate(-160px, -90px);} /* 小红书 */
-    #contact-scatter-list.active li:nth-child(3) { transform: translate(-120px, 40px);} /* 抖音 */
+    #contact-scatter-list.active li:nth-child(1) { transform: translate(-120px, 40px);} /* wx */
+    #contact-scatter-list.active li:nth-child(2) { transform: translate(-80px, -90px);} /* 小红书 */
+    #contact-scatter-list.active li:nth-child(3) { transform: translate(-10px, -40px);} /* 抖音 */
+    #contact-scatter-list.active li:nth-child(4) { transform: translate(-40px, 100px);} /* qrcode */
 
-    #jojo-subscatter.active li:nth-child(1) {transform: translate(-50px, -50px);} /* 承花 */
+    #jojo-subscatter.active li:nth-child(1) {transform: translate(-40px, -40px);} /* 承花 */
     #jojo-subscatter.active li:nth-child(2) {transform: translate(15px, -40px);} /* 西乔西 */
-    #jojo-subscatter.active li:nth-child(3) {transform: translate(30px, 20px);} /* 仗露 */
-}   
+    #jojo-subscatter.active li:nth-child(3) {transform: translate(-20px, 20px);} /* 仗露 */
+
+    #yuan-subscatter.active li:nth-child(1) {transform: translate(30px, 20px);} /* 广陵王 */
+    #yuan-subscatter.active li:nth-child(2) {transform: translate(-15px, -40px);} /* 辩广 */
+    #yuan-subscatter.active li:nth-child(3) {transform: translate(-30px, 20px);} /* 袁广 */
+
+    #bl-subscatter.active li:nth-child(1) {transform: translate(20px, -30px);} /* 凛冴 */
+
+    #genshin-subscatter.active li:nth-child(1) {transform: translate(-50px, -30px);} /* 达达利亚 */
+    #genshin-subscatter.active li:nth-child(2) {transform: translate(15px, 20px);} /* 知妙知 */
+}
+
+
+.qrcode{
+    width:100px;
+    height: auto;
+    position:relative;
+    top: 20px;
+    left: 20px;
+}
+
 
 li a:link {
     color: rgb(177, 147, 96);
@@ -321,8 +394,11 @@ li a:visited {
     border: 1px dashed darkgrey;
 }
 li a:hover, li a:active {
-    box-shadow: 0 0 20px rgba(161,1,31,0.4);
-    transform: scale(1.05);
+    cursor: pointer;
+    padding: 3px;
+    border: dashed 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .qr-code{
@@ -441,7 +517,7 @@ li a:hover, li a:active {
     border: 2px solid #25283B;
     border-radius: 5px;
     padding: 5px;
-    bottom:40px;
+    top:40px;
     right:12px;
     z-index: 2;
 }
