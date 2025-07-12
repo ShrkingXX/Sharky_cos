@@ -626,4 +626,24 @@ body {
       font-size: 18px;
       padding: 8px 0;
     }
+    .image-container {
+      width: auto !important;
+      max-width: 100vw;
+      max-height: 60vh;
+      margin: 0 auto;
+      aspect-ratio: 3/4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #selected-image,
+    #drawing-canvas {
+      width: auto !important;
+      height: 60vh !important;
+      max-height: 60vh;
+      aspect-ratio: 3/4;
+      max-width: 100vw;
+      display: block;
+      margin: 0 auto;
+    }
 }

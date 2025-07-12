@@ -399,7 +399,7 @@ function renderFinalImage(targetCanvas, targetCtx) {
                 toFontSize = 18 * scaleX; // .font-preview-item font-size
                 sigFontSize = 18 * scaleX; // Signature uses 18px
                 toX = 0.05 * cropWidth; // Top-left 5%
-                toY = 0.10 * cropHeight; // Top 10%
+                toY = 0.15 * cropHeight; // Top 10%
                 toShadowBlur = 2 * scaleX;
                 toShadowOffset = 1 * scaleX;
                 watermarkFontSize = toFontSize * 2 / 3;
