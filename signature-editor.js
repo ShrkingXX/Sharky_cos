@@ -2,7 +2,7 @@
 let selectedImage = '';
 let customSignature = '';
 let isDrawing = false;
-let currentTool = 'pen';
+let currentTool = 'eraser';
 let currentColor = '#000000';
 let currentBrushSize = 5;
 let artisticName = '';
@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     setupCanvas();
     setupFontPreviewEvents();
+    setTool('eraser'); // Set eraser as default tool on page load
 });
 
 // Initialize page
@@ -395,11 +396,10 @@ function renderFinalImage(targetCanvas, targetCtx) {
             const scaleY = cropHeight / previewCanvas.height;
             let toFontSize, sigFontSize, toX, toY, toShadowBlur, toShadowOffset, watermarkFontSize, watermarkX, watermarkY;
             if (isMobile) {
-                // Mobile parameters
-                toFontSize = 18 * scaleX; // .font-preview-item font-size
-                sigFontSize = 18 * scaleX; // Signature uses 18px
-                toX = 0.05 * cropWidth; // Top-left 5%
-                toY = 0.15 * cropHeight; // Top 10%
+                toFontSize = 27 * scaleX; // 1.5x larger for mobile To签
+                sigFontSize = 18 * scaleX;
+                toX = 0.05 * cropWidth;
+                toY = 0.15 * cropHeight;
                 toShadowBlur = 2 * scaleX;
                 toShadowOffset = 1 * scaleX;
                 watermarkFontSize = toFontSize * 2 / 3;
