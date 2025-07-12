@@ -67,7 +67,6 @@ function updateCarousel(newIndex) {
 			"hidden"
 		);
 
-		// 只在center卡片显示To签按钮
 		const sigBtn = card.querySelector('.signature-btn');
 		if (sigBtn) sigBtn.style.display = (offset === 0) ? 'block' : 'none';
 

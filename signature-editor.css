@@ -337,7 +337,6 @@ body {
     box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
-/* 签名控制面板样式 */
 .signature-controls {
     background: #f8f9fa;
     padding: 20px;
@@ -453,7 +452,6 @@ body {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
-/* 模态框样式 */
 .modal {
     display: none;
     position: fixed;
@@ -518,7 +516,6 @@ body {
 }
 
 
-/* 艺术字体样式 */
 .artistic-name {
     font-family: 'Brush Script MT', cursive;
     font-size: 30px;
@@ -529,12 +526,10 @@ body {
     margin: 10px 0;
 }
 
-/* 签名颜色样式 */
 .signature-preview {
     filter: var(--signature-color, none);
 } 
 
-/* 字体预览区样式 */
 .font-preview-section {
   display: flex;
   gap: 20px;

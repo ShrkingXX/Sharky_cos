@@ -1,21 +1,21 @@
-// 全局变量
+// Global variables
 let selectedImage = '';
-let customSignature = ''; // 用户输入的祝福语
+let customSignature = '';
 let isDrawing = false;
 let currentTool = 'pen';
 let currentColor = '#000000';
 let currentBrushSize = 5;
 let artisticName = '';
 
-// 签名调整参数
-let signatureX = 80; // 位置X (百分比)
-let signatureY = 80; // 位置Y (百分比)
-let signatureSize = 100; // 大小 (百分比)
-let signatureOpacity = 100; // 透明度 (百分比)
-let signatureRotation = 0; // 旋转角度
-let toSignColor = '#333333'; // To签颜色
+// Signature adjustment parameters
+let signatureX = 80;
+let signatureY = 80;
+let signatureSize = 100;
+let signatureOpacity = 100;
+let signatureRotation = 0;
+let toSignColor = '#333333';
 
-// DOM 元素
+// DOM elements
 const canvas = document.getElementById('drawing-canvas');
 const ctx = canvas.getContext('2d');
 const selectedImageElement = document.getElementById('selected-image');
@@ -27,7 +27,7 @@ const signatureOverlay = document.getElementById('signature-overlay');
 const previewModal = document.getElementById('preview-modal');
 const previewImage = document.getElementById('preview-image');
 
-// 字体face引入
+// Font face imports
 const style = document.createElement('style');
 style.innerHTML = `
 @font-face {
@@ -53,7 +53,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// 字体映射
+// Font mapping
 const FONT_MAP = {
   default: '"Brush Script MT", cursive, "Noto Sans SC", sans-serif',
   Allura: 'Allura, cursive',
@@ -64,7 +64,7 @@ const FONT_MAP = {
 let selectedFontKey = 'default';
 let selectedFontFamily = FONT_MAP['default'];
 
-// 字体选择事件
+// Font selection event
 function setupFontPreviewEvents() {
   document.querySelectorAll('.font-preview-item').forEach(item => {
     item.addEventListener('click', function() {
@@ -72,14 +72,14 @@ function setupFontPreviewEvents() {
       this.classList.add('selected');
       selectedFontKey = this.getAttribute('data-font');
       selectedFontFamily = FONT_MAP[selectedFontKey];
-      // 重新渲染To签和祝福语预览
+      // Re-render signature preview
       showArtisticName();
       showSignaturePreview();
     });
   });
 }
 
-// 初始化
+// Initialization
 document.addEventListener('DOMContentLoaded', function() {
     initializePage();
     setupEventListeners();
@@ -87,70 +87,70 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFontPreviewEvents();
 });
 
-// 初始化页面
+// Initialize page
 function initializePage() {
     const urlParams = new URLSearchParams(window.location.search);
     selectedImage = urlParams.get('image') || 'image1.jpg';
     selectedImageElement.src = selectedImage;
     
-    // 等待图片加载完成后设置画布尺寸
+    // Wait for image to load before setting canvas size
     selectedImageElement.onload = function() {
         const container = document.querySelector('.image-container');
         const containerRect = container.getBoundingClientRect();
         
-        // 计算3:4比例的画布尺寸
+        // Calculate canvas size for 3:4 aspect ratio
         const containerWidth = containerRect.width;
-        const containerHeight = containerWidth * (4/3); // 3:4比例
+        const containerHeight = containerWidth * (4/3); // 3:4 aspect ratio
         
-        // 设置画布尺寸
+        // Set canvas size
         canvas.width = containerWidth;
         canvas.height = containerHeight;
         
-        // 调整画布样式以匹配图片
+        // Adjust canvas style to match image
         canvas.style.width = '100%';
         canvas.style.height = 'auto';
         canvas.style.aspectRatio = '3/4';
         
-        // 初始化画布背景为透明
+        // Initialize canvas background to transparent
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
 }
 
-// 设置事件监听器
+// Set event listeners
 function setupEventListeners() {
-    // 工具按钮
+    // Tool buttons
     document.getElementById('pen-tool').addEventListener('click', () => setTool('pen'));
     document.getElementById('eraser-tool').addEventListener('click', () => setTool('eraser'));
     document.getElementById('clear-canvas').addEventListener('click', clearCanvas);
     
-    // 颜色选择器
+    // Color picker
     document.getElementById('color-picker').addEventListener('change', (e) => {
         currentColor = e.target.value;
     });
     
-    // 画笔大小
+    // Brush size
     document.getElementById('brush-size').addEventListener('input', (e) => {
         currentBrushSize = e.target.value;
         document.getElementById('brush-size-value').textContent = currentBrushSize;
     });
     
-    // 生成艺术字体按钮
+    // Generate artistic font button
     generateNameBtn.addEventListener('click', generateArtisticName);
     
-    // To签颜色选择器
+    // Color selector
     document.getElementById('to-sign-color').addEventListener('change', (e) => {
         toSignColor = e.target.value;
         if (artisticName) {
             showArtisticName();
         }
-        // 同步更新祝福语颜色
+        // Synchronize signature color update
         showSignaturePreview();
     });
     
-    // 生成祝福语按钮
+    // Generate signature button
     generateSignatureBtn.addEventListener('click', generateCustomSignature);
     
-    // 签名调整控制
+    // Signature adjustment controls
     document.getElementById('signature-x').addEventListener('input', updateSignaturePosition);
     document.getElementById('signature-y').addEventListener('input', updateSignaturePosition);
     document.getElementById('signature-size').addEventListener('input', updateSignatureSize);
@@ -158,29 +158,29 @@ function setupEventListeners() {
     document.getElementById('signature-rotation').addEventListener('input', updateSignatureRotation);
     document.getElementById('reset-signature').addEventListener('click', resetSignature);
     
-    // 只保留保存图片按钮
+    // Only keep save image button
     document.getElementById('save-btn').addEventListener('click', saveImage);
 }
 
-// 设置画布
+// Set canvas
 function setupCanvas() {
-    // 鼠标事件
+    // Mouse events
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
     canvas.addEventListener('mouseout', stopDrawing);
     
-    // 触摸事件（移动端支持）
+    // Touch events (mobile support)
     canvas.addEventListener('touchstart', handleTouchStart);
     canvas.addEventListener('touchmove', handleTouchMove);
     canvas.addEventListener('touchend', stopDrawing);
 }
 
-// 设置工具
+// Set tool
 function setTool(tool) {
     currentTool = tool;
     
-    // 更新按钮状态
+    // Update button state
     document.querySelectorAll('.tool-btn').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -194,13 +194,13 @@ function setTool(tool) {
     }
 }
 
-// 开始绘制
+// Start drawing
 function startDrawing(e) {
     isDrawing = true;
     draw(e);
 }
 
-// 绘制
+// Draw
 function draw(e) {
     if (!isDrawing) return;
     
@@ -225,14 +225,14 @@ function draw(e) {
     ctx.moveTo(x, y);
 }
 
-// 停止绘制
+// Stop drawing
 function stopDrawing() {
     isDrawing = false;
     ctx.beginPath();
     ctx.globalCompositeOperation = 'source-over';
 }
 
-// 触摸事件处理
+// Touch event handling
 function handleTouchStart(e) {
     e.preventDefault();
     const touch = e.touches[0];
@@ -253,12 +253,12 @@ function handleTouchMove(e) {
     canvas.dispatchEvent(mouseEvent);
 }
 
-// 清空画布
+// Clear canvas
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// 生成艺术字体
+// Generate artistic font
 function generateArtisticName() {
     const name = nameInput.value.trim();
     if (!name) {
@@ -268,24 +268,24 @@ function generateArtisticName() {
     
     artisticName = 'To ' + name + ':';
     
-    // 显示艺术字体
+    // Show artistic font
     showArtisticName();
     
-    // 显示成功消息
-    showMessage('To签生成成功！');
+    // Show success message
+    showMessage('cn生成成功！');
 }
 
-// 显示艺术字体
+// Show artistic font
 function showArtisticName() {
     if (!artisticName) return;
     
-    // 清除之前的艺术字体
+    // Clear previous artistic font
     const existingName = signatureOverlay.querySelector('.artistic-name');
     if (existingName) {
         existingName.remove();
     }
     
-    // 创建艺术字体元素
+    // Create artistic font element
     const nameElement = document.createElement('div');
     nameElement.className = 'artistic-name';
     nameElement.textContent = artisticName;
@@ -304,7 +304,7 @@ function showArtisticName() {
     showWatermarkPreview();
 }
 
-// 生成祝福语
+// Generate signature
 function generateCustomSignature() {
     const signature = signatureInput.value.trim();
     if (!signature) {
@@ -314,27 +314,27 @@ function generateCustomSignature() {
     
     customSignature = signature;
     
-    // 显示签名控制面板
+    // Show signature control panel
     document.getElementById('signature-controls').style.display = 'block';
     
-    // 显示祝福语预览
+    // Show signature preview
     showSignaturePreview();
     
-    // 显示成功消息
+    // Show success message
     showMessage('祝福语生成成功！');
 }
 
-// 显示签名预览
+// Show signature preview
 function showSignaturePreview() {
     if (!customSignature) return;
     
-    // 清除之前的签名预览
+    // Clear previous signature preview
     const existingSignature = signatureOverlay.querySelector('.signature-preview');
     if (existingSignature) {
         existingSignature.remove();
     }
     
-    // 创建签名预览元素
+    // Create signature preview element
     const signatureElement = document.createElement('div');
     signatureElement.className = 'signature-preview';
     signatureElement.textContent = customSignature;
@@ -359,12 +359,12 @@ function showSignaturePreview() {
     showWatermarkPreview();
 }
 
-// 渲染最终图片到画布
+// Render final image to canvas
 function renderFinalImage(targetCanvas, targetCtx) {
     return new Promise((resolve) => {
         const img = new Image();
         img.onload = function() {
-            // 计算原图中最大3:4区域，居中裁剪
+            // Calculate the largest 3:4 area in the original image, center crop
             let cropWidth, cropHeight, sx, sy;
             const imgAspect = img.width / img.height;
             const targetAspect = 3 / 4;
@@ -384,29 +384,29 @@ function renderFinalImage(targetCanvas, targetCtx) {
             targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
             targetCtx.drawImage(img, sx, sy, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-            // 绘制用户手绘内容（需等比缩放到高分辨率canvas）
+            // Draw user-drawn content (needs to be scaled proportionally)
             const drawingCanvas = document.getElementById('drawing-canvas');
             targetCtx.drawImage(drawingCanvas, 0, 0, drawingCanvas.width, drawingCanvas.height, 0, 0, cropWidth, cropHeight);
 
-            // 判断是否为手机端
+            // Check if it's a mobile device
             const isMobile = window.innerWidth <= 768;
             const previewCanvas = document.getElementById('drawing-canvas');
             const scaleX = cropWidth / previewCanvas.width;
             const scaleY = cropHeight / previewCanvas.height;
             let toFontSize, sigFontSize, toX, toY, toShadowBlur, toShadowOffset, watermarkFontSize, watermarkX, watermarkY;
             if (isMobile) {
-                // 手机端参数（与CSS一致）
+                // Mobile parameters
                 toFontSize = 18 * scaleX; // .font-preview-item font-size
-                sigFontSize = 18 * scaleX; // 祝福语同样用18px
-                toX = 0.05 * cropWidth; // 左上角5%
-                toY = 0.10 * cropHeight; // 顶部10%
+                sigFontSize = 18 * scaleX; // Signature uses 18px
+                toX = 0.05 * cropWidth; // Top-left 5%
+                toY = 0.10 * cropHeight; // Top 10%
                 toShadowBlur = 2 * scaleX;
                 toShadowOffset = 1 * scaleX;
                 watermarkFontSize = toFontSize * 2 / 3;
                 watermarkX = cropWidth * 0.95;
                 watermarkY = cropHeight * 0.95;
             } else {
-                // 桌面端参数（与原有一致）
+                // Desktop parameters
                 const pageWidth = document.documentElement.clientWidth;
                 const toMin = 16, toMax = 24, toVw = pageWidth * 0.04;
                 toFontSize = Math.max(toMin, Math.min(toVw, toMax)) * scaleX;
@@ -421,7 +421,7 @@ function renderFinalImage(targetCanvas, targetCtx) {
                 watermarkY = cropHeight * 0.95;
             }
 
-            // 绘制To签
+            // Draw user name
             if (artisticName) {
                 targetCtx.font = `${toFontSize}px ${selectedFontFamily}`;
                 targetCtx.fillStyle = toSignColor;
@@ -435,7 +435,7 @@ function renderFinalImage(targetCanvas, targetCtx) {
                 targetCtx.fillText(artisticName, 0, 0);
                 targetCtx.restore();
             }
-            // 绘制签名
+            // Draw signature
             if (customSignature) {
                 targetCtx.font = `${sigFontSize}px ${selectedFontFamily}`;
                 targetCtx.fillStyle = toSignColor;
@@ -452,7 +452,7 @@ function renderFinalImage(targetCanvas, targetCtx) {
                 targetCtx.fillText(customSignature, 0, 0);
                 targetCtx.restore();
             }
-            // 绘制水印
+            // Draw watermark
             const watermarkText = 'From 翠翠鲨';
             targetCtx.font = `${watermarkFontSize}px ${selectedFontFamily}`;
             targetCtx.fillStyle = toSignColor;
@@ -470,54 +470,54 @@ function renderFinalImage(targetCanvas, targetCtx) {
             resolve();
         };
         img.onerror = function(e) {
-            console.error('图片加载失败', e);
+            console.error('Image failed to load', e);
         };
         img.src = selectedImage;
     });
 }
 
-// 保存图片
+// Save image
 function saveImage() {
-    console.log('点击了保存图片按钮');
+    console.log('Clicked save image button');
     if (!artisticName){
         alert('请先输入cn！');
-        console.log('未输入cn，终止保存');
+        console.log('cn not entered, saving aborted');
         return;
     }
     if (!customSignature) {
         alert('请先输入祝福语！');
-        console.log('未输入祝福语，终止保存');
+        console.log('Signature not entered, saving aborted');
         return;
     }
     const finalCanvas = document.createElement('canvas');
     const finalCtx = finalCanvas.getContext('2d');
     finalCanvas.width = canvas.width;
     finalCanvas.height = canvas.height;
-    console.log('开始渲染最终图片');
+    console.log('Starting to render final image');
     renderFinalImage(finalCanvas, finalCtx).then(() => {
-        console.log('渲染完成，准备下载图片');
+        console.log('Rendering complete, preparing to download image');
         downloadImage(finalCanvas.toDataURL());
     });
 }
 
-// 确认保存
+// Confirm save
 function confirmSave() {
-    // 创建最终图片
+    // Create final image
     const finalCanvas = document.createElement('canvas');
     const finalCtx = finalCanvas.getContext('2d');
     finalCanvas.width = canvas.width;
     finalCanvas.height = canvas.height;
     
-    // 使用统一的渲染函数
+    // Use unified rendering function
     renderFinalImage(finalCanvas, finalCtx).then(() => {
-        // 下载图片
+        // Download image
         downloadImage(finalCanvas.toDataURL());
     });
 }
 
-// 下载图片
+// Download image
 function downloadImage(dataURL) {
-    console.log('开始下载图片');
+    console.log('Starting image download');
     const link = document.createElement('a');
     link.download = `signature-${Date.now()}.png`;
     link.href = dataURL;
@@ -527,14 +527,14 @@ function downloadImage(dataURL) {
     showMessage('图片保存成功！');
 }
 
-// 关闭模态框
+// Close modal
 function closeModal() {
     previewModal.style.display = 'none';
 }
 
 
 
-// 更新签名位置
+// Update signature position
 function updateSignaturePosition() {
     signatureX = document.getElementById('signature-x').value;
     signatureY = document.getElementById('signature-y').value;
@@ -545,28 +545,28 @@ function updateSignaturePosition() {
     showSignaturePreview();
 }
 
-// 更新签名大小
+// Update signature size
 function updateSignatureSize() {
     signatureSize = document.getElementById('signature-size').value;
     document.getElementById('signature-size-value').textContent = signatureSize + '%';
     showSignaturePreview();
 }
 
-// 更新签名透明度
+// Update signature opacity
 function updateSignatureOpacity() {
     signatureOpacity = document.getElementById('signature-opacity').value;
     document.getElementById('signature-opacity-value').textContent = signatureOpacity + '%';
     showSignaturePreview();
 }
 
-// 更新签名旋转
+// Update signature rotation
 function updateSignatureRotation() {
     signatureRotation = document.getElementById('signature-rotation').value;
     document.getElementById('signature-rotation-value').textContent = signatureRotation + '°';
     showSignaturePreview();
 }
 
-// 重置签名
+// Reset signature
 function resetSignature() {
     signatureX = 80;
     signatureY = 80;
@@ -589,7 +589,7 @@ function resetSignature() {
     showSignaturePreview();
 }
 
-// 将十六进制颜色转换为RGB
+// Convert hex color to RGB
 function hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -599,9 +599,9 @@ function hexToRgb(hex) {
     } : null;
 }
 
-// 显示消息
+// Show message
 function showMessage(message) {
-    // 创建消息元素
+    // Create message element
     const messageElement = document.createElement('div');
     messageElement.style.position = 'fixed';
     messageElement.style.top = '20px';
@@ -618,17 +618,17 @@ function showMessage(message) {
     
     document.body.appendChild(messageElement);
     
-    // 3秒后自动移除
+    // Remove after 3 seconds
     setTimeout(() => {
         messageElement.remove();
     }, 3000);
 }
 
 function showWatermarkPreview() {
-    // 先移除旧的水印
+    // First, remove old watermark
     const existing = signatureOverlay.querySelector('.watermark-preview');
     if (existing) existing.remove();
-    // 只在有To签时显示
+    // Only show if there is a To sign
     if (!artisticName) return;
     const watermark = document.createElement('div');
     watermark.className = 'watermark-preview';
