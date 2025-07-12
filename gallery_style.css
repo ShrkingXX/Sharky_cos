@@ -77,6 +77,35 @@ body {
 	transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.signature-btn {
+	position: absolute;
+	bottom: 15px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	border: none;
+	padding: 8px 20px;
+	border-radius: 25px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	opacity: 1;
+	z-index: 20;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .signature-btn {
+	opacity: 1;
+}
+
+.signature-btn:hover {
+	background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+	transform: translateX(-50%) scale(1.05);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 .card.center {
 	z-index: 10;
 	transform: scale(1.1) translateZ(0);

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To签编辑器</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signature-editor.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>To签生成</h1>
+            <a href="gallery.html" class="back-btn">返回</a>
+        </header>
+
+        <div class="editor-container">
+            <!-- 左侧：图片预览和编辑区域 -->
+            <div class="image-section">
+                <div class="image-container">
+                    <img id="selected-image" src="" alt="选中的图片">
+                    <canvas id="drawing-canvas" width="600" height="400"></canvas>
+                    <div id="signature-overlay" class="signature-overlay"></div>
+                </div>
+                
+                <div class="controls">
+                    <div class="name-input-section">
+                        <label for="name-input">cn：</label>
+                        <input type="text" id="name-input" placeholder="请输入cn" maxlength="20">
+                        <div class="to-sign-color">
+                            <label>To签颜色：</label>
+                            <input type="color" id="to-sign-color" value="#333333">
+                        </div>
+                        <button id="generate-name-btn">生成To签</button>
+                    </div>
+                    
+                    <div class="drawing-tools">
+                        <h3>绘图工具</h3>
+                        <div class="tool-buttons">
+                            <button id="pen-tool" class="tool-btn active">画笔</button>
+                            <button id="eraser-tool" class="tool-btn">橡皮擦</button>
+                            <button id="clear-canvas" class="tool-btn">清空画布</button>
+                        </div>
+                        <div class="color-picker">
+                            <label>颜色：</label>
+                            <input type="color" id="color-picker" value="#000000">
+                        </div>
+                        <div class="brush-size">
+                            <label>画笔大小：</label>
+                            <input type="range" id="brush-size" min="1" max="20" value="5">
+                            <span id="brush-size-value">5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：签名输入和控制区域 -->
+            <div class="signature-section">
+                <h3>选择字体</h3>
+                <!-- 字体预览区 -->
+                <div class="font-preview-section">
+                  <div class="font-preview-item font-default selected" data-font="default">字体  Text</div>
+                  <div class="font-preview-item font-allura" data-font="Allura">字体  Text</div>
+                  <div class="font-preview-item font-zhimang" data-font="ZhiMangXing">字体  Text</div>
+                  <div class="font-preview-item font-ainizai" data-font="AiNiZaiHuangHunRiLuoShouXieTi">字体  Text</div>
+                  <div class="font-preview-item font-aazhunimei" data-font="AaZhuNiWoMingMeiXiangChunTian">字体  Text</div>
+                </div>
+                <div class="signature-input-section">
+                    <label for="signature-input">祝福语：</label>
+                    <textarea id="signature-input" placeholder="例如：天天开心！" maxlength="100" rows="3"></textarea>
+                    <button id="generate-signature-btn">生成祝福语</button>
+                </div>
+
+                <!-- 签名调整控制面板 -->
+                <div class="signature-controls" id="signature-controls" style="display: none;">
+                    <h3>调整祝福语</h3>
+                    <div class="control-group">
+                        <label>横坐标：</label>
+                        <input type="range" id="signature-x" min="0" max="100" value="80">
+                        <span id="signature-x-value">80%</span>
+                    </div>
+                    <div class="control-group">
+                        <label>纵坐标：</label>
+                        <input type="range" id="signature-y" min="0" max="100" value="80">
+                        <span id="signature-y-value">80%</span>
+                    </div>
+                    <div class="control-group">
+                        <label>大小：</label>
+                        <input type="range" id="signature-size" min="10" max="200" value="100">
+                        <span id="signature-size-value">100%</span>
+                    </div>
+                    <div class="control-group">
+                        <label>透明度：</label>
+                        <input type="range" id="signature-opacity" min="0" max="100" value="100">
+                        <span id="signature-opacity-value">100%</span>
+                    </div>
+                    <div class="control-group">
+                        <label>旋转：</label>
+                        <input type="range" id="signature-rotation" min="-180" max="180" value="0">
+                        <span id="signature-rotation-value">0°</span>
+                    </div>
+                    <button id="reset-signature" class="control-btn">重置祝福语</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="save-btn" class="action-btn primary">保存图片</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 删除预览模态框相关HTML -->
+    </div>
+
+    <script src="signature-editor.js"></script>
+</body>
+</html> 

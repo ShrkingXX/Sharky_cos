@@ -67,6 +67,10 @@ function updateCarousel(newIndex) {
 			"hidden"
 		);
 
+		// 只在center卡片显示To签按钮
+		const sigBtn = card.querySelector('.signature-btn');
+		if (sigBtn) sigBtn.style.display = (offset === 0) ? 'block' : 'none';
+
 		if (offset === 0) {
 			card.classList.add("center");
 		} else if (offset === 1) {
@@ -119,6 +123,16 @@ cards.forEach((card, i) => {
 	card.addEventListener("click", () => {
 		updateCarousel(i);
 	});
+});
+
+// To签
+document.addEventListener('click', (e) => {
+	if (e.target.classList.contains('signature-btn')) {
+		e.stopPropagation();
+		const imageSrc = e.target.getAttribute('data-image');
+		const imageIndex = e.target.getAttribute('data-index');
+		window.location.href = `signature-editor.html?image=${imageSrc}&index=${imageIndex}`;
+	}
 });
 
 document.addEventListener("keydown", (e) => {
